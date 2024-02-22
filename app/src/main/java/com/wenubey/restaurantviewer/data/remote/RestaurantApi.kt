@@ -11,8 +11,7 @@ interface RestaurantApi {
 
     @GET("businesses/search")
     suspend fun searchRestaurants(
-        @Header("Authorization") authHeader: String,
-        @Query("term") searchTerm: String,
+        @Header("Authorization") authHeader: String = API_KEY,
         @Query("latitude") latitude: Double,
         @Query("longitude") longitude: Double,
         @Query("offset") offset: Int,
