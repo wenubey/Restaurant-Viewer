@@ -6,7 +6,7 @@ data class RestaurantListDto(
     @SerializedName("total")
     val total: Int,
     @SerializedName("businesses")
-    val restaurantDto: RestaurantDto,
+    val restaurantDto: List<RestaurantDto>,
 
     )
 
