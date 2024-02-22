@@ -13,6 +13,7 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Call
+import androidx.compose.material.icons.filled.Category
 import androidx.compose.material.icons.filled.Navigation
 import androidx.compose.material.icons.filled.Restaurant
 import androidx.compose.material3.Card
@@ -94,7 +95,10 @@ fun RestaurantListCard(
             Column(horizontalAlignment = Alignment.Start, modifier = Modifier.padding(4.dp)) {
                 CardInfoItem(text = restaurant.name, imageVector = Icons.Default.Restaurant)
                 CardInfoItem(text = restaurant.phone, imageVector = Icons.Default.Call)
-                CardInfoItem("Distance in meters: ${restaurant.distance.toInt()}", imageVector = Icons.Default.Navigation)
+                CardInfoItem(text = "Distance in meters: ${restaurant.distance.toInt()}", imageVector = Icons.Default.Navigation)
+                restaurant.categoryTitle.forEach {
+                    CardInfoItem(text = it, imageVector = Icons.Default.Category)
+                }
             }
         }
     }
