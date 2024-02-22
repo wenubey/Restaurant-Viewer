@@ -1,6 +1,8 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id ("dagger.hilt.android.plugin")
+    id("com.google.devtools.ksp")
 }
 
 android {
@@ -47,6 +49,21 @@ android {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
+    class RoomSchemaArgProvider(
+        @get:InputDirectory
+        @get:PathSensitive(PathSensitivity.RELATIVE)
+        val schemaDir: File
+    ) : CommandLineArgumentProvider {
+
+        override fun asArguments(): Iterable<String> {
+            return listOf("room.schemaLocation=${schemaDir.path}")
+        }
+    }
+
+    ksp {
+        arg(RoomSchemaArgProvider(File(projectDir, "schemas")))
+    }
+
 }
 
 dependencies {
@@ -66,4 +83,35 @@ dependencies {
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
+
+    // ICONS EXTENDED
+    implementation ("androidx.compose.material:material-icons-extended")
+    // Android Architecture Components
+    implementation ("androidx.lifecycle:lifecycle-runtime-compose")
+    implementation ("androidx.lifecycle:lifecycle-viewmodel-compose")
+    // Navigation
+    implementation ("androidx.navigation:navigation-compose")
+
+    // Dagger - Hilt
+    implementation ("com.google.dagger:hilt-android:2.50")
+    implementation ("androidx.compose.material3:material3-window-size-class:1.2.0")
+    ksp ("com.google.dagger:hilt-android-compiler:2.50")
+    ksp ("androidx.hilt:hilt-compiler:1.2.0")
+    implementation ("androidx.hilt:hilt-navigation-compose:1.2.0")
+
+    // Paging
+    implementation ("androidx.paging:paging-runtime-ktx:3.2.1")
+    implementation ("androidx.paging:paging-compose:3.2.1")
+
+    // Retrofit
+    implementation ("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation ("com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.3")
+    implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
+
+    implementation ("com.google.code.gson:gson:2.10.1")
+
+    // Room
+    implementation ("androidx.room:room-ktx:2.6.1")
+    ksp ("androidx.room:room-compiler:2.6.1")
+    implementation ("androidx.room:room-paging:2.6.1")
 }

@@ -1,4 +1,4 @@
-package com.wenubey.restaurantviewer
+package com.wenubey.restaurantviewer.ui
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
