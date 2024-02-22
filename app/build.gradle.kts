@@ -89,8 +89,6 @@ dependencies {
     // Android Architecture Components
     implementation ("androidx.lifecycle:lifecycle-runtime-compose")
     implementation ("androidx.lifecycle:lifecycle-viewmodel-compose")
-    // Navigation
-    implementation ("androidx.navigation:navigation-compose")
 
     // Dagger - Hilt
     implementation ("com.google.dagger:hilt-android:2.50")
@@ -114,4 +112,11 @@ dependencies {
     implementation ("androidx.room:room-ktx:2.6.1")
     ksp ("androidx.room:room-compiler:2.6.1")
     implementation ("androidx.room:room-paging:2.6.1")
+
+    // Google Services
+    implementation("com.google.android.gms:play-services-location:21.1.0")
+
+    // Coil
+    implementation ("io.coil-kt:coil-compose:2.5.0")
+
 }
